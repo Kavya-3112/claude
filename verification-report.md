@@ -186,3 +186,165 @@ Listed for accuracy, not re-litigated or re-decided here:
 - T-24's `innerHTML` audit and host-specific CSP header, once undertaken, will need their own Stage 6/7 passes (not yet reviewed or verified, per `impl-plan.md`'s own status line).
 - Any future genuine manual NVDA+Firefox assessment, if and when a suitable environment becomes available, would still need to be performed and verified before any WCAG 2.2 AA conformance statement could be considered — no such statement is made here.
 - The Stage 1-4 approval-verification gap is unrelated to and not resolved by this technical verification pass; it remains a governance matter for the orchestrator/user.
+
+---
+
+# Stage 7 — Re-verification Addendum (2026-10-27)
+
+**Produced by:** verification-agent, delegated by the SDLC orchestrator, 2026-10-27, 4 days after the section above.
+
+**Reason for this pass:** the 2026-10-23 section above recorded its working directory as `C:\Users\KaviyaKalimuthu\Desktop\claude`, which differs from this session's actual working directory, `C:\Users\KaviyaKalimuthu\Documents\claude`. Per instruction, that prior report's numbers were not trusted and every check was re-executed fresh in this session, in this working directory, rather than assumed to still hold.
+
+**Working directory for every command below:** `C:\Users\KaviyaKalimuthu\Documents\claude`.
+
+## A.1 Investigation of the `Desktop\claude` path reference
+
+Before re-running checks, this pass investigated whether the prior report's path was a typo/fabrication or a reference to a real, different artifact. Finding: **`C:\Users\KaviyaKalimuthu\Desktop\claude` still exists on this machine as a separate, real git checkout**, independently confirmed by directly listing and inspecting it:
+
+- It contains its own `.git`, `.github`, full project tree, `node_modules`, and its own copy of `verification-report.md`.
+- `git log --oneline -5` inside it shows the identical two commits (`27186ee`, `c5aa81a`) on the identical branch (`feature/initial-implementation`) as this `Documents\claude` checkout.
+- `git status` inside it shows the identical uncommitted diff (modified `.github/sdlc-status.md`, deleted `CHANGELOG.md`, deleted `PR-DESCRIPTION.md`) as this checkout.
+- A byte-for-byte `diff` of its `verification-report.md` against this checkout's `verification-report.md` (before this addendum was appended) showed **no differences** — identical file.
+- However, its `git remote -v` points to `https://github.com/Kavya-3112/claude-capstone2.git`, whereas this `Documents\claude` checkout's `git remote -v` points to a **different** URL, `https://github.com/Kavya-3112/claude.git`.
+
+**Conclusion:** the 2026-10-23 report's `Desktop\claude` path was **not** a typo or fabrication — it correctly names a second, real, still-present checkout of the same commit history on this machine. It is left as-is in Section 8 above rather than "corrected," because rewriting it to `Documents\claude` would misrepresent where that session's commands actually ran. This addendum instead records the discrepancy here: two checkouts with identical commits/tracked-file content but different git remotes exist on this machine (`.../claude.git` for `Documents\claude`, `.../claude-capstone2.git` for `Desktop\claude`). This is a workspace-hygiene observation, not a code defect, and is outside this agent's remit to resolve.
+
+## A.2 Commands re-executed and exact results
+
+### A.2.1 Type-check
+
+```
+npx tsc --noEmit
+```
+Result: exit code 0, no output. **Matches** the 2026-10-23 finding (clean).
+
+### A.2.2 Unit tests
+
+```
+npx vitest run
+```
+Result:
+```
+Test Files  15 passed (15)
+     Tests  179 passed (179)
+  Duration  1.02s
+```
+Exit code 0. **Matches** the 2026-10-23 finding exactly (179/179, 15 files).
+
+### A.2.3 Production build + CSP artifact check
+
+```
+npm run build
+```
+Result: exit code 0.
+```
+✓ 28 modules transformed.
+dist/index.html                  2.63 kB │ gzip:  1.11 kB
+dist/assets/index-DN5Pt11e.css   4.10 kB │ gzip:  1.41 kB
+dist/assets/index-u7swbWv2.js   39.42 kB │ gzip: 11.89 kB
+✓ built in 210ms
+```
+Followed by a direct grep of the built artifact:
+```
+grep "Content-Security-Policy" dist/index.html
+```
+Result:
+```
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'self'" />
+```
+**Matches** the 2026-10-23 finding (identical hashes, identical CSP string, identical module count).
+
+### A.2.4 End-to-end suite, both engines
+
+```
+npx playwright test --project=firefox --project=chromium
+```
+Run twice in this session (once piped through `tail` where the captured exit code was an artifact of the pipe, not Playwright's own; re-run a second time without a lossy pipe to confirm the real exit code). Both runs produced the same totals:
+
+```
+238 passed
+2 failed
+(2.4m–2.6m duration)
+```
+Confirmed actual process exit code: **1** (non-zero, due to the 2 failures).
+
+The 2 failures, both `[firefox]`, identical names/lines/errors to 2026-10-23:
+1. `tests\e2e\recovery.spec.ts:96:3 › T-20 unreadable data › copy puts the exact original on the clipboard`
+2. `tests\e2e\csp.spec.ts:95:1 › recovery screen, Blob download and copy work on the built page under the CSP with no violations`
+
+Both fail with:
+```
+Error: browserContext.grantPermissions: Unknown permission: clipboard-read
+```
+at the `context.grantPermissions(['clipboard-read', 'clipboard-write'])` call in each test (identical line numbers to 2026-10-23: `recovery.spec.ts:97`, `csp.spec.ts:99`).
+
+**Matches** the 2026-10-23 finding exactly: same 2 tests, same test names, same line numbers, same error message, same 238/2 split.
+
+### A.2.5 Isolated re-runs of the 2 failures, 3x each, Firefox only
+
+Per instruction, these were re-isolated and re-run fresh in this session rather than assumed to still fail the same way.
+
+```
+npx playwright test --project=firefox -g "copy puts the exact original on the clipboard" --repeat-each=3
+```
+Result: **3 failed / 3 run**, all three with the identical `Unknown permission: clipboard-read` error at the identical line (`recovery.spec.ts:97`).
+
+```
+npx playwright test --project=firefox -g "recovery screen, Blob download and copy work" --repeat-each=3
+```
+Result: **3 failed / 3 run**, all three with the identical `Unknown permission: clipboard-read` error at the identical line (`csp.spec.ts:99`).
+
+**Conclusion (freshly re-verified, not assumed to match):** 6/6 isolated executions in this session failed identically, at the identical call sites, with the identical error message as the 2026-10-23 pass's 6/6 result. This remains a deterministic, 100%-reproducible failure consistent with the known Playwright-Firefox `grantPermissions` clipboard-permission-name limitation already documented in `accessibility-assessment.md` (F-1) and `.github/sdlc-status.md`. This is a reproduction finding only — this agent makes no disposition/acceptance claim about these 2 failures.
+
+### A.2.6 Dependency/security audit
+
+```
+npm audit
+```
+Result (run twice to confirm it was not a one-off blip):
+```
+npm warn audit request to https://registry.npmjs.org/-/npm/v1/security/advisories/bulk failed, reason: getaddrinfo EAI_AGAIN registry.npmjs.org
+npm error audit endpoint returned an error
+```
+Exit code 1 both times. **This is an environment limitation (no outbound network/DNS resolution to registry.npmjs.org in this session's environment), not a security finding.** It **differs** from the 2026-10-23 report, which recorded a clean `npm audit` run (`found 0 vulnerabilities`) — that result could not be reproduced in this session because this session's environment has no network access to the npm registry. No dependency vulnerability status (positive or negative) can be asserted from this session; this check is **BLOCKED**, not passed and not failed.
+
+### A.2.7 Lint / formatting
+
+Re-confirmed: no `lint`/`format` script in `package.json`, no ESLint/Prettier/EditorConfig config file at the project root. **Matches** the 2026-10-23 finding (not applicable, tooling not configured).
+
+## A.3 Drift check: src/, tests/, package.json
+
+Per instruction, this was checked by actually running the suites above (not by assuming), plus a direct `git status`/`git diff --stat` read:
+
+```
+git status
+git diff --stat HEAD
+```
+Result: only `.github/sdlc-status.md` (1 line changed), `CHANGELOG.md` (deleted), `PR-DESCRIPTION.md` (deleted) show as modified/deleted relative to `HEAD`. **No changes to any file under `src/`, `tests/`, `package.json`, `playwright.config.ts`, or `index.html`.** This is corroborated by every test/build/type-check command above reproducing the exact same counts, module list, and bundle hashes as the 2026-10-23 report. **No drift detected.**
+
+## A.4 Summary: match / differ / supersede
+
+| Check | 2026-10-23 result | 2026-10-27 result | Relationship |
+|---|---|---|---|
+| `npx tsc --noEmit` | clean, exit 0 | clean, exit 0 | **Matches** |
+| `npx vitest run` | 179/179 passed | 179/179 passed | **Matches** |
+| `npm run build` + CSP check | success; CSP meta tag present | success; CSP meta tag present, byte-identical build output | **Matches** |
+| `npx playwright test` (chromium+firefox) | 238 passed / 2 failed, exit 1 | 238 passed / 2 failed, exit 1, same 2 tests/lines/error | **Matches** |
+| Isolated 3x re-runs of the 2 failures | 6/6 reproduced | 6/6 reproduced | **Matches** |
+| `npm audit` | 0 vulnerabilities (clean) | **BLOCKED** — no network/DNS access to registry.npmjs.org in this session | **Differs** — this session could not reproduce or contradict the prior clean result; it simply could not run the check. Supersedes the 2026-10-23 audit claim only in the sense that this session's audit status must now be read as **unverified-this-session**, not as a new finding of vulnerabilities. |
+| Lint/format | not configured | not configured | **Matches** |
+| `Desktop\claude` path reference in Section 8 | unexplained discrepancy | **confirmed real, separate checkout** (same commits/diff, different git remote: `claude.git` vs `claude-capstone2.git`); not a typo, left uncorrected with this explanatory note added instead | **Clarifies**, does not correct (see A.1) |
+
+**Overall:** this 2026-10-27 pass independently reproduces every technical finding of the 2026-10-23 report except the dependency audit, which was environment-blocked in this session (network/DNS unavailable) rather than contradicted. No new defects, no new drift, and no change in the 2 known Firefox clipboard-permission failures were found. This addendum supersedes the 2026-10-23 report only for: (a) the audit status (now unverified-this-session rather than reusable as "0 vulnerabilities" until re-run with network access), and (b) the explanation of the `Desktop\claude` path (now confirmed as a real separate checkout, not a typo).
+
+## A.5 Environment limitations and blockers (this session)
+
+- `npm audit` could not complete: outbound network/DNS resolution to `registry.npmjs.org` failed (`getaddrinfo EAI_AGAIN`) on two separate attempts. This is a network/sandbox restriction of this session's environment, not a project or dependency issue. Dependency/vulnerability status should be re-checked once network access to the npm registry is available.
+- Same as 2026-10-23: no NVDA installation and no real desktop Firefox installation exist in this environment for manual assistive-technology testing; none was attempted here either.
+- A second, real checkout of this same repository (`C:\Users\KaviyaKalimuthu\Desktop\claude`, remote `claude-capstone2.git`) exists on this machine alongside this one (`Documents\claude`, remote `claude.git`), with identical tracked content. This is noted for workspace hygiene; resolving/consolidating it is outside this agent's remit.
+
+## A.6 Remaining verification work
+
+- Re-run `npm audit` once network/DNS access to `registry.npmjs.org` is available in the execution environment, to obtain a verifiable dependency/vulnerability status for this session rather than relying on the 2026-10-23 figure.
+- All "Remaining verification work" items listed in Section 9 of the 2026-10-23 report above remain equally open and are not re-litigated here.
+- No new remaining work was identified beyond the above as a result of this re-verification pass.
