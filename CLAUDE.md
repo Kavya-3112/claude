@@ -4,7 +4,7 @@ This project runs a human-approved, gated SDLC controlled by the `sdlc-orchestra
 
 ## Where to look first (in order)
 
-1. `.github/sdlc-log.md` — concise resume checkpoint (current stage, status, next action)
+1. `.github/sdlc-log.json` — concise resume checkpoint (current stage, status, next action)
 2. `.github/sdlc-status.md` — current gate/approval status table
 3. `docs/decisions/governance-log.md` — full decision/dispute history behind any status row (consult only when a specific entry needs it)
 4. `.claude/input/userstory.md` — the approved project input (user stories, acceptance criteria)

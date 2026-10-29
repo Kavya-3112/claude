@@ -1,6 +1,6 @@
 # SDLC Status (persisted by the sdlc-orchestrator)
 
-Concise current-state gate table. For the concise resume checkpoint, see `.github/sdlc-log.md`. For the full chronological history behind any row below (disputes, corrections, verification runs), see `docs/decisions/governance-log.md` — nothing there is summarized here a second time.
+Concise current-state gate table. For the concise resume checkpoint, see `.github/sdlc-log.json`. For the full chronological history behind any row below (disputes, corrections, verification runs), see `docs/decisions/governance-log.md` — nothing there is summarized here a second time.
 
 Last updated: 2026-10-29, by the sdlc-orchestrator (reorganized into gate-table form for token efficiency; no status value was changed by this reorganization — see `docs/decisions/governance-log.md` for the full prior narrative, preserved verbatim).
 
