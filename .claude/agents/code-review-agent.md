@@ -56,7 +56,7 @@ If no issues are found, state what was reviewed, what was not reviewed, and any 
 
 ## Review artifact
 
-Write or update the root-level `code-review.md` unless the Orchestrator explicitly directs the findings into `design-review.md`.
+Write or update `docs/testing/code-review.md` unless the Orchestrator explicitly directs the findings into `docs/design/design-review.md`.
 
 Preserve existing review content and unrelated user changes. Do not overwrite unrelated findings or remove unresolved issues without evidence.
 

@@ -13,10 +13,10 @@ Work only on the specific approved Stage 5 tasks delegated by the SDLC Orchestra
 
 Before making any changes:
 
-1. Read the approved root `requirements.md`.
-2. Read the approved root `architecture.md`.
-3. Read the relevant `design-review.md` and identify applicable findings or constraints.
-4. Read the root `impl-plan.md`.
+1. Read the approved `docs/requirements/requirements.md`.
+2. Read the approved `docs/architecture/architecture.md`.
+3. Read the relevant `docs/design/design-review.md` and identify applicable findings or constraints.
+4. Read `docs/architecture/impl-plan.md`.
 5. Verify that the implementation plan is approved using the project's recorded approval evidence.
 6. Verify that the delegated task is `NOT_STARTED` or explicitly returned for rework.
 7. Inspect the relevant existing files, tests, repository conventions, and current changes.

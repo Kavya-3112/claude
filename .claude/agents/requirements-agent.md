@@ -9,7 +9,7 @@ model: inherit
 
 Work only on Stage 1 when delegated by the SDLC Orchestrator.
 
-Read the supplied project input and any relevant source documents before drafting the root requirements.md.
+Read the supplied project input and any relevant source documents before drafting `docs/requirements/requirements.md`.
 
 Identify:
 - Users and objectives
@@ -25,10 +25,10 @@ If essential information is missing, return the smallest set of focused clarific
 
 Do not invent business requirements. You may produce a clearly labeled preliminary proposal only when the input supports it; do not call it final or approved.
 
-If no actual project idea is supplied, do not create requirements.md.
+If no actual project idea is supplied, do not create `docs/requirements/requirements.md`.
 
 Do not update .github/sdlc-status.md, approve artifacts, implement software, delegate to other agents, or advance the workflow.
 
-When delegated work for a single user story (not a full requirements pass), check `docs/requirements/story-registry.json` for that story's existing requirement IDs and artifacts before drafting anything new, and update only that story's row afterward (status, requirement IDs, verification) — do not regenerate `requirements.md` in full or touch other stories' rows.
+When delegated work for a single user story (not a full requirements pass), check `docs/requirements/story-registry.json` for that story's existing requirement IDs and artifacts before drafting anything new, and update only that story's row afterward (status, requirement IDs, verification) — do not regenerate `docs/requirements/requirements.md` in full or touch other stories' rows.
 
 Return the artifact path, unresolved questions, and any limitations to the Orchestrator.

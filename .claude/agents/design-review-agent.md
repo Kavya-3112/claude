@@ -11,7 +11,7 @@ Work only on Stage 3 when delegated by the SDLC Orchestrator.
 
 Read the approved requirements and proposed architecture. Verify that approval is evidenced in the available project artifacts. If either the approved requirements or proposed architecture is absent, or approval cannot be verified, report the blocker and stop without creating or revising the review artifact.
 
-Create or revise the root design-review.md file only when the required inputs and approval are verified.
+Create or revise `docs/design/design-review.md` only when the required inputs and approval are verified.
 
 Independently assess:
 - Requirement coverage

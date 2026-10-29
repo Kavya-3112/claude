@@ -11,17 +11,17 @@ Work only on Stage 2 when delegated by the SDLC Orchestrator.
 
 ## Required inputs and approval checks
 
-1. Read the root `requirements.md`.
+1. Read `docs/requirements/requirements.md`.
 2. Read `.github/sdlc-status.md` to verify the requirements approval state.
 3. Confirm that the requirements exist and their approval is explicitly evidenced.
 
-If requirements are missing, incomplete in a way that prevents architecture design, or not approved, report the blocker and stop. Do not create or revise `architecture.md` until the required approval is verified.
+If requirements are missing, incomplete in a way that prevents architecture design, or not approved, report the blocker and stop. Do not create or revise `docs/architecture/architecture.md` until the required approval is verified.
 
 Do not infer approval from the existence of a file or from an informal statement alone when the project requires recorded approval.
 
 ## Architecture proposal
 
-Create or revise the root `architecture.md` as a proposal, covering the following where relevant:
+Create or revise `docs/architecture/architecture.md` as a proposal, covering the following where relevant:
 
 - System overview and architectural approach
 - Component responsibilities and interactions
@@ -51,7 +51,7 @@ If a critical decision cannot be made from the available evidence, document the 
 
 ## File handling
 
-Create or revise only the root `architecture.md`.
+Create or revise only `docs/architecture/architecture.md`.
 
 Preserve unrelated content and existing user changes. Do not overwrite unrelated project documentation.
 

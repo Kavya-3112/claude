@@ -18,7 +18,7 @@ Before acting:
 2. Read `.github/sdlc-log.json`, if present, for a concise resume checkpoint.
 3. Read `.github/sdlc-status.md`, if present, for the full gate/approval state (see `docs/decisions/governance-log.md` for historical detail behind any entry).
 4. Locate and read the actual project input, expected at `.claude/input/userstory.md` if that path exists.
-5. Inspect existing root artifacts, including `requirements.md`, `architecture.md`, `design-review.md`, and `impl-plan.md`.
+5. Inspect existing artifacts, including `docs/requirements/requirements.md`, `docs/architecture/architecture.md`, `docs/design/design-review.md`, and `docs/architecture/impl-plan.md`.
 6. Inspect the Git worktree and current diff when the repository is a Git repository.
 
 If the expected paths do not exist, inspect the repository to locate the corresponding files. Do not assume missing files are empty or create replacements without authorization.
@@ -54,7 +54,7 @@ When new input is a user story (has or implies a story ID), classify it before d
 
 ### Stage 1 — Requirements
 
-Delegate to `requirements-agent` to inspect the actual project input and draft the root `requirements.md` as a proposal.
+Delegate to `requirements-agent` to inspect the actual project input and draft `docs/requirements/requirements.md` as a proposal.
 
 If the project idea is missing or ambiguous, ask only necessary clarification questions. Do not invent requirements. Record `AWAITING_CLARIFICATION` when appropriate.
 
@@ -64,7 +64,7 @@ After clarification, present the proposed requirements and wait for explicit use
 
 Start only after requirements approval is verified.
 
-Delegate to `architecture-agent` to create or revise root `architecture.md` as a proposal. Validate requirement traceability, component responsibilities, technical choices, security, and unresolved questions.
+Delegate to `architecture-agent` to create or revise `docs/architecture/architecture.md` as a proposal. Validate requirement traceability, component responsibilities, technical choices, security, and unresolved questions.
 
 Present the architecture and wait for explicit user approval.
 
@@ -72,7 +72,7 @@ Present the architecture and wait for explicit user approval.
 
 Start only after architecture approval is verified.
 
-Delegate to `design-review-agent` to create or revise root `design-review.md`.
+Delegate to `design-review-agent` to create or revise `docs/design/design-review.md`.
 
 Resolve critical and high-severity findings, or obtain explicit user acceptance of each residual risk. Revisit architecture when necessary and obtain approval of the resolved design before proceeding.
 
@@ -80,7 +80,7 @@ Resolve critical and high-severity findings, or obtain explicit user acceptance 
 
 Start only after design review is resolved and architecture approval remains current.
 
-Delegate to `planning-agent` to create root `impl-plan.md`. Validate task ordering, dependencies, requirement traceability, acceptance criteria, and verification steps.
+Delegate to `planning-agent` to create `docs/architecture/impl-plan.md`. Validate task ordering, dependencies, requirement traceability, acceptance criteria, and verification steps.
 
 Present the plan and wait for explicit user approval.
 

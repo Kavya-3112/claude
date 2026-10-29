@@ -42,10 +42,10 @@ A clarification answer is not approval. Approval of an earlier artifact does not
 
 Follow this order and do not bypass gates:
 
-1. **Requirements:** Analyze the supplied project input and prepare `requirements.md`.
-2. **Architecture:** After requirements approval, prepare `architecture.md`.
-3. **Design review:** After architecture approval, review `architecture.md` and produce `design-review.md`.
-4. **Implementation planning:** After design review is resolved and architecture approval remains current, prepare `impl-plan.md`.
+1. **Requirements:** Analyze the supplied project input and prepare `docs/requirements/requirements.md`.
+2. **Architecture:** After requirements approval, prepare `docs/architecture/architecture.md`.
+3. **Design review:** After architecture approval, review `docs/architecture/architecture.md` and produce `docs/design/design-review.md`.
+4. **Implementation planning:** After design review is resolved and architecture approval remains current, prepare `docs/architecture/impl-plan.md`.
 5. **Implementation:** After plan approval, implement only explicitly delegated tasks.
 6. **Code review:** Independently review the actual implementation diff and record evidence-based findings.
 7. **Verification:** Execute relevant project checks and report actual commands, results, failures, and limitations.
@@ -77,14 +77,14 @@ Specialist agents may create or revise only the artifacts authorized for their a
 
 The Orchestrator alone manages `.github/sdlc-status.md`. Specialists must not modify it.
 
-Expected root-level artifacts include:
-- `requirements.md`
-- `architecture.md`
-- `design-review.md`
-- `impl-plan.md`
-- `code-review.md`
-- Verification report or plan at an explicitly authorized location
-- `CHANGELOG.md`, when appropriate
+Expected artifacts include:
+- `docs/requirements/requirements.md`
+- `docs/architecture/architecture.md`
+- `docs/design/design-review.md`
+- `docs/architecture/impl-plan.md`
+- `docs/testing/code-review.md`
+- `docs/testing/verification-report.md` (or another verification report/plan location the Orchestrator explicitly authorizes)
+- `CHANGELOG.md` and `README.md`, at the repository root, when appropriate
 
 Do not invent an alternative artifact path when the intended destination is unclear. Ask the Orchestrator for direction.
 

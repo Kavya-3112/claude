@@ -13,19 +13,19 @@ Work only on Stage 4 when delegated by the SDLC Orchestrator.
 
 Before creating or revising the plan:
 
-1. Read the root `requirements.md`.
-2. Read the root `architecture.md`.
-3. Read the root `design-review.md`.
+1. Read `docs/requirements/requirements.md`.
+2. Read `docs/architecture/architecture.md`.
+3. Read `docs/design/design-review.md`.
 4. Read `.github/sdlc-status.md` to verify the recorded approval states.
 5. Confirm that requirements and architecture are approved and the design review is resolved, including any required risk acceptance.
 
-If any required artifact, approval evidence, or prerequisite is missing, report the blocker and stop. Do not create or revise `impl-plan.md` until the prerequisites are verified.
+If any required artifact, approval evidence, or prerequisite is missing, report the blocker and stop. Do not create or revise `docs/architecture/impl-plan.md` until the prerequisites are verified.
 
 Do not infer approval from the existence of a document or a specialist's statement.
 
 ## Implementation plan
 
-Create or revise the root `impl-plan.md`.
+Create or revise `docs/architecture/impl-plan.md`.
 
 Organize tasks in dependency order so that prerequisites are completed before dependent tasks begin.
 
@@ -58,7 +58,7 @@ If a task cannot be planned safely because a decision is unresolved, record the 
 
 ## File handling
 
-Create or revise only the root `impl-plan.md`.
+Create or revise only `docs/architecture/impl-plan.md`.
 
 Preserve existing relevant content and unrelated user changes. Do not silently discard existing tasks or evidence.
 

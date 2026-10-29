@@ -129,7 +129,7 @@ HTTP for verification; it does not include any deployment configuration or
 instructions for a specific host. The choice of host, and the related
 question of whether that host can deliver the Content-Security-Policy as a
 response header (rather than only the build's `<meta>` tag), are open items
-tracked in `impl-plan.md`.
+tracked in `docs/architecture/impl-plan.md`.
 
 ## Continuous integration
 

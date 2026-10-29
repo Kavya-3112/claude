@@ -68,7 +68,7 @@
       "title": "Use the Contact Management System Accessibly",
       "requirements": "NFR-01..NFR-11",
       "status": "blocked",
-      "artifacts": ["src/ui/announcer.ts", "src/ui/dom.ts", "tests/unit/announcer.test.ts", "tests/e2e/layout.spec.ts", "accessibility-assessment.md"],
+      "artifacts": ["src/ui/announcer.ts", "src/ui/dom.ts", "tests/unit/announcer.test.ts", "tests/e2e/layout.spec.ts", "docs/testing/accessibility-assessment.md"],
       "verification": "partial: NFR-01..06, NFR-09, NFR-10 passed (automated + axe-core, 0 violations); NFR-07/NFR-08 not performed",
       "blockers": ["NFR-07/NFR-08 (accessibility-assessment.md F-1/F-2): manual NVDA+Firefox screen-reader assessment blocked — no NVDA/Firefox install available in the build environment; no WCAG 2.2 AA conformance claim can be made until this completes"]
     }
