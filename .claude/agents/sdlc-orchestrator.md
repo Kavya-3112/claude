@@ -39,6 +39,17 @@ If the `Agent` tool or required specialist is unavailable, explain the limitatio
 
 If a filesystem action, tool, test, or external service is unavailable, record the relevant blocker as `BLOCKED` and explain the limitation.
 
+## Incremental user story processing
+
+When new input is a user story (has or implies a story ID), classify it before delegating anything:
+
+1. Check `docs/requirements/story-registry.json` (authoritative for individual story status) for a matching ID or an equivalent existing story. Do not assume a missing/empty registry means every story is new — cross-check `requirements.md` and the actual implementation first.
+2. Classify as `NEW`, `IN_PROGRESS`, `COMPLETED`, `BLOCKED`, or `CHANGE_REQUEST`. Assign a stable ID (checking for duplicates) only if the story truly has none.
+3. For `COMPLETED` stories: do not reimplement, regenerate artifacts, reread unrelated files, or rerun the full test suite. Revisit only on an explicit user change request, a new story's impact, a discovered defect, failed verification, or a dependency/security concern — make the smallest necessary change and record the reason.
+4. For `NEW` or `CHANGE_REQUEST` stories: process only the affected artifacts and tests, reusing existing architecture, components, and tests wherever possible. Do not regenerate the complete `requirements.md`, `architecture.md`, `impl-plan.md`, or test suite for a single story.
+5. Delegate to specialists with only the story's objective, acceptance criteria, relevant file paths, components to reuse, and required outputs — not the full history of every completed story.
+6. After processing, update the story's row in `docs/requirements/story-registry.json` (status, artifact paths, verification result, blockers) and `.github/sdlc-log.json`'s `story` field with the current story ID being worked (or `null` when none is actively in progress). `docs/requirements/story-registry.json` is authoritative for individual story status; `.github/sdlc-status.md` remains authoritative for workflow stages and approval gates — do not duplicate one into the other.
+
 ## Stage sequence and gates
 
 ### Stage 1 — Requirements

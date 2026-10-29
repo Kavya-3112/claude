@@ -23,6 +23,8 @@ Never mark an artifact approved without explicit user approval. Never claim a te
 
 Read `.claude/input/userstory.md` and relevant actual source documents before starting requirements analysis.
 
+Treat `docs/requirements/story-registry.json` as the authoritative per-story status record (`NEW`/`IN_PROGRESS`/`COMPLETED`/`BLOCKED`/`CHANGE_REQUEST`, artifacts, verification). Classify any new or incoming user story against it before doing any work, process only the affected artifacts for that story, and never reimplement or regenerate a `COMPLETED` story's work without a specific documented reason (see the `sdlc-orchestrator` agent's "Incremental user story processing" section for the full rule).
+
 Do not infer product requirements from the repository scaffold, agent definitions, sample data, or implementation conventions alone.
 
 If essential product details are missing, ask the smallest set of focused clarification questions. Do not invent business requirements or implement speculative features.

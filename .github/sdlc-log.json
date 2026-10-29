@@ -1,5 +1,6 @@
 {
   "project": "Contact Management System",
+  "story": null,
   "stage": "Stage 8 - PR preparation (published)",
   "status": "blocked",
   "updated": "2026-10-29",
@@ -9,7 +10,8 @@
     "Stage 6 code review: CR-12 HIGH resolved; CR-13/CR-17 disposition unverified",
     "Stage 7 verification re-confirmed 2026-10-27, verification-report.md",
     "Stage 8 published: PR #1 https://github.com/Kavya-3112/claude/pull/1",
-    "SDLC token-efficiency reorg 2026-10-29: sdlc-status.md compacted to gate table, governance-log.md added, path fixes, CLAUDE.md/copilot-instructions.md/start-sdlc command added"
+    "SDLC token-efficiency reorg 2026-10-29: sdlc-status.md compacted to gate table, governance-log.md added, path fixes, CLAUDE.md/copilot-instructions.md/start-sdlc command added",
+    "Story registry established at docs/requirements/story-registry.json: US-01..US-07 completed, US-08 blocked (manual AT testing unavailable)"
   ],
   "pending": [
     "Direct user approval of Stage 1-4 artifacts",

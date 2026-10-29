@@ -29,4 +29,6 @@ If no actual project idea is supplied, do not create requirements.md.
 
 Do not update .github/sdlc-status.md, approve artifacts, implement software, delegate to other agents, or advance the workflow.
 
+When delegated work for a single user story (not a full requirements pass), check `docs/requirements/story-registry.json` for that story's existing requirement IDs and artifacts before drafting anything new, and update only that story's row afterward (status, requirement IDs, verification) — do not regenerate `requirements.md` in full or touch other stories' rows.
+
 Return the artifact path, unresolved questions, and any limitations to the Orchestrator.

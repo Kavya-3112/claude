@@ -1,0 +1,76 @@
+{
+  "stories": [
+    {
+      "id": "US-01",
+      "title": "Add a New Contact",
+      "requirements": "FR-01..FR-08, FR-47, FR-48, FR-50",
+      "status": "completed",
+      "artifacts": ["src/domain/phone.ts", "src/domain/name.ts", "src/domain/length.ts", "src/state/store.ts", "src/ui/form.ts", "tests/unit/phone.test.ts", "tests/unit/name.test.ts", "tests/unit/store.test.ts", "tests/e2e/contacts.spec.ts"],
+      "verification": "passed",
+      "blockers": []
+    },
+    {
+      "id": "US-02",
+      "title": "View All Contacts",
+      "requirements": "FR-09..FR-14",
+      "status": "completed",
+      "artifacts": ["src/ui/list.ts", "src/domain/ordering.ts", "tests/e2e/contacts.spec.ts", "tests/e2e/layout.spec.ts"],
+      "verification": "passed",
+      "blockers": []
+    },
+    {
+      "id": "US-03",
+      "title": "Edit an Existing Contact",
+      "requirements": "FR-15..FR-21, FR-49",
+      "status": "completed",
+      "artifacts": ["src/ui/form.ts", "src/state/store.ts", "tests/unit/store.test.ts", "tests/e2e/contacts.spec.ts"],
+      "verification": "passed",
+      "blockers": []
+    },
+    {
+      "id": "US-04",
+      "title": "Delete a Contact",
+      "requirements": "FR-22..FR-27",
+      "status": "completed",
+      "artifacts": ["src/ui/confirmDialog.ts", "src/ui/list.ts", "src/state/store.ts", "tests/e2e/contacts.spec.ts"],
+      "verification": "passed",
+      "blockers": ["CR-17 (LOW, code-review.md): confirmDialog not reactively disabled on a late-arriving mutation block; disposition UNVERIFIED-BY-ORCHESTRATOR"]
+    },
+    {
+      "id": "US-05",
+      "title": "Search Contacts by Name or Phone Number",
+      "requirements": "FR-28..FR-34, FR-54, FR-55",
+      "status": "completed",
+      "artifacts": ["src/domain/search.ts", "src/ui/search.ts", "tests/unit/search.test.ts", "tests/e2e/search.spec.ts"],
+      "verification": "passed",
+      "blockers": []
+    },
+    {
+      "id": "US-06",
+      "title": "Allow Contacts with Duplicate Phone Numbers",
+      "requirements": "FR-35..FR-39, FR-56",
+      "status": "completed",
+      "artifacts": ["src/domain/id.ts", "src/domain/ordering.ts", "tests/unit/ordering.test.ts", "tests/e2e/contacts.spec.ts"],
+      "verification": "passed",
+      "blockers": []
+    },
+    {
+      "id": "US-07",
+      "title": "Preserve Contacts and Recover from Storage Errors",
+      "requirements": "FR-40..FR-46, FR-51..FR-53, FR-57",
+      "status": "completed",
+      "artifacts": ["src/storage/adapter.ts", "src/storage/repository.ts", "src/storage/schema.ts", "src/ui/recovery.ts", "src/ui/recoveryModel.ts", "src/ui/banner.ts", "src/ui/bannerModel.ts", "src/ui/tabs.ts", "tests/unit/adapter.test.ts", "tests/unit/repository.test.ts", "tests/unit/schema.test.ts", "tests/e2e/recovery.spec.ts", "tests/e2e/banner.spec.ts", "tests/e2e/tabs.spec.ts"],
+      "verification": "passed",
+      "blockers": ["CR-13 (MEDIUM, code-review.md): untested-by-execution cross-tab backup interaction; disposition UNVERIFIED-BY-ORCHESTRATOR"]
+    },
+    {
+      "id": "US-08",
+      "title": "Use the Contact Management System Accessibly",
+      "requirements": "NFR-01..NFR-11",
+      "status": "blocked",
+      "artifacts": ["src/ui/announcer.ts", "src/ui/dom.ts", "tests/unit/announcer.test.ts", "tests/e2e/layout.spec.ts", "accessibility-assessment.md"],
+      "verification": "partial: NFR-01..06, NFR-09, NFR-10 passed (automated + axe-core, 0 violations); NFR-07/NFR-08 not performed",
+      "blockers": ["NFR-07/NFR-08 (accessibility-assessment.md F-1/F-2): manual NVDA+Firefox screen-reader assessment blocked — no NVDA/Firefox install available in the build environment; no WCAG 2.2 AA conformance claim can be made until this completes"]
+    }
+  ]
+}
