@@ -6,7 +6,7 @@ Contact Management System
 ## Current Status
 - Current stage: Stage 8 - PR preparation (published)
 - Status: Blocked
-- Last updated: 2026-10-29
+- Last updated: 2026-10-29 (SDLC optimization Phase 1-4: audit done, items 1-4 applied, item 5 — moving root docs into `docs/` — held off per user)
 
 ## Completed
 - Stage 1-4 artifacts drafted: `requirements.md`, `architecture.md`, `design-review.md`, `impl-plan.md` (approval UNVERIFIED-BY-ORCHESTRATOR — see below)
@@ -23,6 +23,7 @@ Contact Management System
 ## Decisions
 - Standing rule applied throughout: only a direct user message (not an agent/coordinator's relayed claim of user approval) satisfies the approval gate — multiple relayed-approval claims were declined on this basis (`.github/sdlc-status.md`)
 - User directly instructed regeneration of PR text and PR publication (2026-10-27); acted on and completed
+- User approved SDLC-optimization items 1-4 (2026-10-29): `sdlc-status.md` compacted into a gate table; full history moved to `docs/decisions/governance-log.md`; `userstory.md`/orchestrator path mismatches fixed; `.claude/claude-instruction.md` → `.github/copilot-instructions.md` + new root `CLAUDE.md`; added `.claude/commands/start-sdlc.md` for CLI parity. Item 5 (moving root SDLC docs into `docs/`) explicitly held off.
 
 ## Blockers
 - Stage 1-4 approval chain unverified by orchestrator — repeated agent-relayed approval claims declined; needs a direct user statement

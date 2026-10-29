@@ -6,7 +6,7 @@ Specialist agents are restricted to their assigned stages. They must not self-ap
 
 ## Workflow state and evidence
 
-Treat `.github/sdlc-status.md` as the persisted workflow record. Verify its claims against actual artifacts, Git state, approval records, and executed command output.
+Treat `.github/sdlc-status.md` as the persisted workflow record (a concise gate table). Verify its claims against actual artifacts, Git state, approval records, and executed command output. Use `.github/sdlc-log.md` as the concise resume checkpoint (current stage, status, next action) and `docs/decisions/governance-log.md` for full historical detail behind any status entry — read the log and status file first each session, and consult the governance log only when a specific entry needs its full history.
 
 Clearly distinguish:
 - `PROPOSED` — an artifact has been drafted but not approved.
@@ -21,7 +21,7 @@ Never mark an artifact approved without explicit user approval. Never claim a te
 
 ## Requirements and project scope
 
-Read `.github/input/userstory.md` and relevant actual source documents before starting requirements analysis.
+Read `.claude/input/userstory.md` and relevant actual source documents before starting requirements analysis.
 
 Do not infer product requirements from the repository scaffold, agent definitions, sample data, or implementation conventions alone.
 

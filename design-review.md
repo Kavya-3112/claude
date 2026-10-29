@@ -77,4 +77,4 @@ A static client-only app using localStorage is feasible. The highest-complexity 
 - The recorded acceptance of the DR-02 race is relayed and unverified.
 - Remaining design details for planning: leftover-backup ordering, the staleness baseline, lowercasing, UUID fallback, version pinning.
 - Everything is design-level. Nothing is built or tested.
-- Stage 4 must not start until the gates in `claude-instruction.md` are met, including resolution or explicit user acceptance of the residual risks here.
+- Stage 4 must not start until the gates in `.github/copilot-instructions.md` are met, including resolution or explicit user acceptance of the residual risks here.
